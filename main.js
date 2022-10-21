@@ -12,7 +12,7 @@ const getLine = () => new Promise((resolve) => rl.once('line', resolve))
 
 const getRobotPosition = async () => {
   const line = await getLine()
-  const [, robotX, robotY, robotDirection] = line.match(/^(.+?)\s*(.+?)\s*(.+?)/)
+  const [, robotX, robotY, robotDirection] = line.match(/.*?(\d+)\s*(\d+)\s*(N|E|S|W).*?/) || []
   return {
     robotX: Number(robotX),
     robotY: Number(robotY),
@@ -22,7 +22,7 @@ const getRobotPosition = async () => {
 
 ;(async () => {
   let line = await getLine()
-  const [, topX, topY] = line.match(/^(.+?)\s*(.+?)/).map(Number)
+  const [, topX, topY] = (line.match(/.*?(\d+)\s*(\d+).*?/) || []).map(Number)
 
   while(true) {
     let { robotX, robotY, robotDirection } = await getRobotPosition()
