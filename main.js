@@ -9,6 +9,7 @@ const rl = readline.createInterface({
 const getLine = () => new Promise((resolve) => rl.once('line', resolve))
 
 ;(async () => {
-  const line = await getLine()
-  console.log('---->', line)
+  let line = await getLine()
+  const [, topX, topY] = line.match(/^(.+?)\s*(.+?)/).map(Number)
+  console.log(topX, topY)
 })()
