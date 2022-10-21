@@ -1,6 +1,8 @@
 import * as readline from 'node:readline'
 import * as process from 'node:process'
-import { ROBOT_DIRECTIONS, NORTH, EAST, SOUTH, WEST, LOST } from './constants.js'
+
+import { ROBOT_DIRECTIONS, LOST } from './constants.js'
+import { commands } from './commands.js'
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -17,43 +19,6 @@ const getRobotPosition = async () => {
     robotY: Number(robotY),
     robotDirection: ROBOT_DIRECTIONS.indexOf(robotDirection),
   }
-}
-
-const commands = {
-  DEFAULT: ({ robotX, robotY, robotDirection }) => ({ robotX, robotY, robotDirection }),
-
-  L: ({ robotX, robotY, robotDirection }) => ({
-    robotX,
-    robotY,
-    robotDirection: (robotDirection + 3) % 4,
-  }),
-
-  R: ({ robotX, robotY, robotDirection }) => ({
-    robotX,
-    robotY,
-    robotDirection: (robotDirection + 1) % 4,
-  }),
-
-  F: ({ robotX, robotY, robotDirection }) => {
-
-    if (robotDirection === NORTH) {
-      return { robotX, robotY: robotY + 1, robotDirection }
-    }
-
-    if (robotDirection === EAST) {
-      return { robotX: robotX + 1, robotY, robotDirection }
-    }
-
-    if (robotDirection === SOUTH) {
-      return { robotX, robotY: robotY - 1, robotDirection }
-    }
-
-    if (robotDirection === WEST) {
-      return { robotX: robotX - 1, robotY, robotDirection }
-    }
-
-    return { robotX, robotY, robotDirection }
-  },
 }
 
 ;(async () => {
