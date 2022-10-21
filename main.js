@@ -1,14 +1,6 @@
 import * as readline from 'node:readline'
 import * as process from 'node:process'
-
-const ROBOT_DIRECTIONS = ['N', 'E', 'S', 'W']
-
-const NORTH = ROBOT_DIRECTIONS.indexOf('N')
-const EAST = ROBOT_DIRECTIONS.indexOf('E')
-const SOUTH = ROBOT_DIRECTIONS.indexOf('S')
-const WEST = ROBOT_DIRECTIONS.indexOf('W')
-
-const LOST = 'LOST'
+import { ROBOT_DIRECTIONS, NORTH, EAST, SOUTH, WEST, LOST } from './constants.js'
 
 const rl = readline.createInterface({
   input: process.stdin,
