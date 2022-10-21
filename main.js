@@ -26,6 +26,9 @@ const getRobotPosition = async () => {
 
   while(true) {
     let { robotX, robotY, robotDirection } = await getRobotPosition()
-    console.log({ robotX, robotY, robotDirection })
+    
+    for (const command of await getLine()) {
+      console.log(command)
+    }
   }
 })()
